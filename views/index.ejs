@@ -255,7 +255,9 @@
               <hr class="star-dark mb-5">
               <img class="img-fluid mb-5" src="img/search.png" alt="">
               <p class="mb-5">Wonder what is this pill and what does it use for? We have a solution for you.</p>
-              <p class="mb-5">CLICK</p>
+               <a href="./StreamCustomVision.html"><h3 class="text-center">Stream Custom Vision</h3></a>
+               <a href="./ImageCustomVision.html"><h3 class="text-center">Image Custom Vision</h3></a>
+ 
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                 <i class="fa fa-close"></i>
                 CLOSE</a>
@@ -276,8 +278,92 @@
             <div class="col-lg-8 mx-auto">
               <h2 class="text-secondary text-uppercase mb-0">LIST OF PILLS</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/listpill.png" alt="">
+              
               <p class="mb-5">HERE ARE LIST OF PILLS IN OUR DATABASE</p>
+<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Data Table </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>How to use </th>
+                  <th>Direction</th>
+                  <th>Warning</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>How to use </th>
+                  <th>Direction</th>
+                  <th>Warning</th>
+                  <th>Link</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr>
+                  <td>CPM</td>
+                  <td>allergy, have fever, and the common cold</td>
+                  <td>Child(4y-12y): eat every 6 hrs, Adult: eat every 4 hrs</td>
+                  <td>sleepy</td>
+                  <td>https://www.drugs.com/search.php?searchterm=chlorpheniramine&a=1</td>
+                </tr>
+
+                <tr>
+                  <td>Ibuphofan</td>
+                  <td>headache, toothache, or minor injury</td>
+                  <td>Child(6y-12y): eat every 8 hrs, Adult: eat every 6 hrs</td>
+                  <td>upset stomach, mild heartburn, nausea, vomiting</td>
+                  <td>https://www.drugs.com/search.php?searchterm=Ibuprofen&a=1&m=ibuph</td>
+                </tr>
+
+                <tr>
+                  <td>Cetirizine</td>
+                  <td>treat cold or allergy symptoms</td>
+                  <td>once a day</td>
+                  <td>sleepy</td>
+                  <td>https://www.pobpad.com/cetirizine</td>
+                </tr>
+
+                <tr>
+                  <td>Paracetamol</td>
+                  <td>pain reliever and a fever reducer</td>
+                  <td>Child(4y-12y): 1 tab every 8 hrs , Adults: 1-2 tabs every 6 hrs</td>
+                  <td>prohibit to eat continuously more than 5 days</td>
+                  <td>https://www.drugs.com/search.php</td>
+                </tr>
+
+                <tr>
+                  <td>Ponstan</td>
+                  <td>pain reliever</td>
+                  <td>Adult: 1 tb every 8 hrs</td>
+                  <td>Not recommended for children under 12 years old</td>
+                  <td>http://www.medicines.ie/medicine/12200/SPC/Ponstan+250mg+Capsules/</td>
+                </tr>
+
+                <tr>
+                  <td>Amoxicillin</td>
+                  <td>treat infection caused by bacteria</td>
+                  <td>only take by doctor advise</td>
+                  <td>need a advise from doctor</td>
+                  <td>https://www.drugs.com/search.php?searchterm=amoxicillin&a=1</td>
+                </tr>
+
+               
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+
+
+
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                 <i class="fa fa-close"></i>
                 CLOSE</a>
@@ -298,10 +384,8 @@
             <div class="col-lg-8 mx-auto">
               <h2 class="text-secondary text-uppercase mb-0">FIND LOCATION-PILL</h2>
               <hr class="star-dark mb-5">
-              <img class="img-fluid mb-5" src="img/listpill.png" alt="">
+              
               <p class="mb-5">This feature provides you the most optimized pharmacy or hospital for you.</p>
-
-              <p class="mb-5">FIND LOCATION</p>
 
 
 
@@ -319,31 +403,29 @@
         padding: 0;
       }
     </style> 
+    <div id="map"></div>
     
     <script type="text/javascript">
 
       // This example displays a marker at the center of Australia.
       // When the user clicks the marker, an info window opens.
   
-   function initMap() {
-        var namtok = {lat:14.435547,lng:101.414364}; //namtok haew narok
+    function initMap() {
+        var chula = {lat:13.73826 ,lng:100.532413}; //chula drug store
         var map1 = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-        center: namtok,
+          zoom: 8,
+        center: chula,
         mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         var contentString1 = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Nam Tok Haew Narok</h1>'+
+            '<h1 id="firstHeading" class="firstHeading">Chula Bhesaj Drug Store </h1>'+
             '<div id="bodyContent">'+
-            '<p><b>Nam Tok Haew Narok</b>, or known as <b> Hell Gorge Waterfall</b>,' +'is one of the most impressive waterfall in Khao Yai National Park.' +
-            'It was said to tumble in three drops combining for a total of over 150m in height. '+
-            ' However, we were only able to see the uppermost leap from an overlook at the end of a 1km (each way) trail.'+
-            'All in all, we recommend you to come and see once in your life. </p>'+
+            '<p><b>Chula Bhesaj Drug Store</b>' +'is one of the most nearest drug store you can find here.</p>' +
 
-            '<p>Attribution: Namtok Haew Narok, <a href="https://www.lonelyplanet.com/thailand/khao-yai-national-park/attractions/nam-tok-haew-narok/a/poi-sig/1554190/357738">'+
+            '<p>Attribution: Chula Bhesaj Drug Store, <a href="https://th.foursquare.com/v/%E0%B8%88%E0%B8%AC%E0%B8%B2%E0%B9%80%E0%B8%A0%E0%B8%AA%E0%B8%8A-chula-bhesaj-drug-store/4cd4039e607a6dcb85c71254">'+
             'Click here for more infomation </p>'+
             '</div>'+
             '</div>';
@@ -354,81 +436,16 @@
         });
 
         var marker = new google.maps.Marker({
-          position: namtok,
+          position: chula,
           map: map1,
-          title: 'Namtok Haew Narok'
+          title: 'chula-bhesaj-drug-store'
         });
         marker.addListener('click', function() {
           infowindow1.open(map1, marker);
         });
 
 
-
-
-
-        var khaoyai = {lat:14.3123,lng:101.3819}; //khaoyai national park
-
-
-        var contentString2 = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Khaoyai National Park</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>Khaoyai National Park</b>, was one of the most impressive waterfall in Khao Yai National Park.' +
-            'There are five marked trails for independent walking, but birders or animal trackers should consider hiring a jungle guide.'+
-            ' In addition, night safaris is one of the best wildlife-watching opportunity that you shouldn not miss it'+
-            'All in all, it is important to understand the nature and the wildlife-animal. So that the nature live long with us. </p>'+
-
-            '<p>Attribution: Khaoyai National Park, <a href="https://www.lonelyplanet.com/thailand/nakhon-ratchasima-province/attractions/khao-yai-national-park/a/poi-sig/1243373/357738">'+
-            'Click here for more infomation </p>'+
-            '</div>'+
-            '</div>';
-
-        var infowindow2 = new google.maps.InfoWindow({
-          content: contentString2
-        });
-
-        var marker2 = new google.maps.Marker({
-          position: khaoyai,
-          map: map1,
-          title: 'Khaoyai National Park'
-        });
-        marker2.addListener('click', function() {
-          infowindow2.open(map1, marker2);
-        });
-
-
-
-
-        var camp = {lat:14.434357,lng:101.380479}; //camp surat sawadee
-
-
-        var contentString3 = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Surat Sawadee Camp</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>Surat Sawadee Camp</b>, is the place holding TOP GUN RALLY 2018 this year.' +
-            'It is up on the hill in Khaoyai National Park and is surrounded by beauty and nature. '+
-            'See you! TOP GUN RALLY 2018! </p>'+
-
-            '<p>Attribution: Surat Sawadee Camp, <a href="http://nationalpark.atapy.co.th/facilitydetail.php?id=9&name=%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%A2%E0%B8%B2%E0%B8%A7%E0%B8%8A%E0%B8%99-%E0%B9%82%E0%B8%8B%E0%B8%99%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B8%E0%B8%A3%E0%B8%B1%E0%B8%AA%E0%B8%A7%E0%B8%94%E0%B8%B5">'+
-            'Click here for more infomation </p>'+
-            '</div>'+
-            '</div>';
-
-        var infowindow3 = new google.maps.InfoWindow({
-          content: contentString3
-        });
-
-        var marker3 = new google.maps.Marker({
-          position: camp,
-          map: map1,
-          title: 'Surat Sawadee Camp'
-        });
-        marker3.addListener('click', function() {
-          infowindow3.open(map1, marker3);
-        });
+      
       }
     </script>
     <script async defer

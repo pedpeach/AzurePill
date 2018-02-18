@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Vision (File Image)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Athiti:400,700&amp;subset=latin-ext,thai,vietnamese" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <style type="text/css">
+        body{
+            font-family: 'Athiti', sans-serif;
+        }
+    </style>
+    <div class="col-md-12">
+        <div class="col-md-offset-3 col-md-6">
+            <h3 class="text-center"><b>Custom Vision (File Image)</b></h3>
+        </div>
+        <div class="col-md-offset-1 col-md-2">
+            
+        </div>
+    </div>
+    <div class="col-md-12">
+        <form method="post" accept-charset="utf-8" name="formImage">
+            <div class="col-md-offset-3 col-md-6 text-center">
+                <img id="imageBefore" class="text-center" style="margin-bottom:0.5em;width:100%;height:auto;" />
+                <input type="file" name="fileImage" id='fileImage' class="form-control">
+            </div>
+        </form>
+        <div class="col-md-12" style="margin-top:1em;">
+            <div class="col-md-offset-3 col-md-6">
+                <button id="image" onclick="snapshot()" class="form-control btn btn-primary"><i class="fa fa-cube" aria-hidden="true"></i> Process Image</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <hr>
+        <b><i><span id="textAPI" class="text-center"></span></i></b>
+    </div>
+    <script type="text/javascript">
+        var isFile=false;
+        //elements for taking the snapshot
+        function snapshot(){
+            if(this.isFile){
+                uploadSever();
+            }else{
+                alert("คุณยังไม่ใส่ข้อมูลรูปภาพ!!");
+            }  
+        }
+
+        //show image before
+        function readURL(input) {
+          if(input.files&&input.files[0]){
+            var reader=new FileReader();
+            reader.onload=function(e){
+              $('#imageBefore').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+
+        //check type file
+        $("#fileImage").change(function(){
+            var isFile=checkTypeImage(this);
+            if(isFile){
+                readURL(this);
+            }else{
+                alert("กรุณาใส่ไฟล์รูปภาพที่มีนามสกุล jpg หรือ png");
+            }
+        });
+        function checkTypeImage(input){
+            var file=input.files[0];
+            if(file){
+                var fileType=file["type"];
+                var ValidImageTypes=["image/jpeg","image/png","image/jpg"];
+                if($.inArray(fileType,ValidImageTypes)<0){
+                    this.isFile=false;
+                    return false;
+                }else{
+                    this.isFile=true;
+                    return true;
+                }
+            }else{
+                this.isFile=false;
+                $('#imageBefore').attr('src',"");
+                return true;
+            }
+        }
+
+        //upload image to Sever and get api
+        function uploadSever(){
+            var form=new FormData(document.forms["formImage"]);
+            $("#image").html("กำลังประมวลผล <i class='fa fa-spinner fa-spin'></i>");
+            $("#textAPI").html("กำลังประมวลผล <i class='fa fa-spinner fa-spin'></i>");
+            var array=[];
+            var textAPI="";
+            $.ajax({
+                url: "ImageCustomVision.php",
+                type: "POST",
+                data: form,
+                contentType: false,
+                cache: false,
+                processData:false,
+            success: function(data){
+                var dataAPI=[];
+                if(data){
+                    var dataAPI=JSON.parse(data);
+                }
+                for (var item=0;item<dataAPI.length;item++){
+                    var dataNum=Number(dataAPI[item]["Probability"]);
+                    var textNum=dataNum*100;
+                    if(dataNum>0.9){
+                        textAPI=textAPI+"ในภาพมี "+dataAPI[item]["Tag"]+" อยู่ด้วย ("+textNum.toFixed(2)+"%)<br>";
+                    }else if(dataNum>0.5){
+                        textAPI=textAPI+"คาดว่าในภาพอาจมี "+dataAPI[item]["Tag"]+" อยู่ด้วย ("+textNum.toFixed(2)+"%)<br>";
+                    }
+                }
+                if(textAPI!==""){
+                    $("#textAPI").html(textAPI);
+                }else{
+                    $("#textAPI").html("ไม่มีอะไรในภาพ");
+                }
+                $("#image").html("<i class='fa fa-cube' aria-hidden='true'></i> Process Image");
+            }});
+        };
+    </script>
+    <div class="col-md-12 footer-copyright" style="margin-top:2em;">
+        <div class="container-fluid text-center">
+            ©2018 Copyright: <a href="https://patipan-nakarin.com"> PATIPAN NAKARIN </a>
+
+        </div>
+    </div>
+</body>
+</html>
